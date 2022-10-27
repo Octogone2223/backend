@@ -35,6 +35,9 @@ const options = {
       {
         url: 'http://localhost:8080',
       },
+      {
+        url: 'https://octogone-waste.herokuapp.com'
+      }
     ],
   },
   apis: ['src/routes/waste.routes.ts'],

@@ -37,7 +37,7 @@ const options = {
       },
     ],
   },
-  apis: ['./routes/waste.routes.ts'],
+  apis: ['src/routes/waste.routes.ts'],
 };
 
 const specs = swaggerJsdoc(options);

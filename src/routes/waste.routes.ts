@@ -1,13 +1,13 @@
-import { Express } from "express";
+import { Express } from 'express';
 const {
   getAll,
   getOne,
   createOne,
   updateIsCollected,
   deleteWaste,
-} = require("../controllers/waste.controller");
+} = require('../controllers/waste.controller');
 
-const BASE_URL = "/wastes";
+const BASE_URL = '/wastes';
 
 /**
  * @swagger
@@ -19,7 +19,7 @@ const BASE_URL = "/wastes";
  *         - label
  *         - issuing_company
  *         - quantity
- *         - dlc
+ *         - expiration_date
  *         - is_collected
  *       properties:
  *         _id:
@@ -37,7 +37,7 @@ const BASE_URL = "/wastes";
  *         expiration_date:
  *           type: string
  *           description: expiry date
- *        is_collected:
+ *         is_collected:
  *           type: boolean
  *           description: Weither the waste was collected or not
  *       example:
@@ -54,7 +54,6 @@ const BASE_URL = "/wastes";
  *  name: Waste
  *  description: API to manage wastes.
  */
-
 module.exports = (app: Express) => {
   app.get(`${BASE_URL}`, getAll);
   app.get(`${BASE_URL}/:id`, getOne);

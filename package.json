@@ -20,9 +20,7 @@
   },
   "homepage": "https://github.com/Octogone2223/backend#readme",
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.14",
-    "@types/jsonwebtoken": "^8.5.9",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^18.11.7",
     "@types/swagger-jsdoc": "^6.0.1",
@@ -32,11 +30,9 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.0",
     "morgan": "^1.10.0",
     "swagger-jsdoc": "^6.2.5",

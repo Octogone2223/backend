@@ -59,7 +59,8 @@ require('./routes/waste.routes')(app);
 // Connect to MongoDB
 const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
-const dbURI = `mongodb+srv://${dbUser}:${dbPassword}@cluster0.sguejvt.mongodb.net/dev?retryWrites=true&w=majority`;
+const dbName = process.env.DB_NAME || 'dev';
+const dbURI = `mongodb+srv://${dbUser}:${dbPassword}@cluster0.sguejvt.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
 mongoose
   .connect(dbURI)

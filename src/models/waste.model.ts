@@ -11,7 +11,7 @@ const wasteSchema = new mongoose.Schema(
       required: [true, `Le nom de l'entreprise émettrice est requis`],
     },
     quantity: {
-      type: String,
+      type: Number,
       required: [true, `La quantité est requise`],
     },
     expiration_date: {

@@ -1,4 +1,14 @@
-import { Express } from 'express';
+import { Express } from "express";
+const {
+  getAll,
+  getOne,
+  createOne,
+  updateIsCollected,
+  deleteWaste,
+} = require("../controllers/waste.controller");
+
+const BASE_URL = "/wastes";
+
 /**
  * @swagger
  * components:
@@ -45,14 +55,10 @@ import { Express } from 'express';
  *  description: API to manage wastes.
  */
 
-const {
-  getAll,
-  updateIsCollected,
-  deleteWaste,
-} = require('../controllers/waste.controller');
-
 module.exports = (app: Express) => {
-  app.get('/wastes', getAll);
-  app.put('/wastes/:id', updateIsCollected);
-  app.delete('/wastes/:id', deleteWaste);
+  app.get(`${BASE_URL}`, getAll);
+  app.get(`${BASE_URL}/:id`, getOne);
+  app.post(`${BASE_URL}`, createOne);
+  app.put(`${BASE_URL}/:id`, updateIsCollected);
+  app.delete(`${BASE_URL}/:id`, deleteWaste);
 };

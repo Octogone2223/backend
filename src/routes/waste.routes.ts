@@ -1,4 +1,4 @@
-import { Express } from "express";
+import { Express } from 'express';
 /**
  * @swagger
  * components:
@@ -24,7 +24,7 @@ import { Express } from "express";
  *         quantity:
  *           type: number,
  *           description: Quantity of waste.
- *         dlc:
+ *         expiration_date:
  *           type: string
  *           description: expiry date
  *        is_collected:
@@ -34,7 +34,7 @@ import { Express } from "express";
  *          label: "Pomme"
  *          issuing_company: "Carrefour"
  *          quantity: 50
- *          dlc: "20/12/2022"
+ *          expiration_date: "20/12/2022"
  *          is_collected: false
  */
 
@@ -45,8 +45,14 @@ import { Express } from "express";
  *  description: API to manage wastes.
  */
 
-const { getAll } = require("../controllers/waste.controller");
+const {
+  getAll,
+  updateIsCollected,
+  deleteWaste,
+} = require('../controllers/waste.controller');
 
 module.exports = (app: Express) => {
-  app.get("/wastes", getAll);
+  app.get('/wastes', getAll);
+  app.put('/wastes/:id', updateIsCollected);
+  app.delete('/wastes/:id', deleteWaste);
 };

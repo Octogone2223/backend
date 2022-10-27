@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const wasteSchema = new mongoose.Schema(
   {
@@ -14,13 +14,13 @@ const wasteSchema = new mongoose.Schema(
       type: String,
       required: [true, `La quantité est requise`],
     },
-    dlc: {
+    expiration_date: {
       type: String,
       required: [true, `La date limite de consommation est requise`],
     },
     is_collected: {
       type: Boolean,
-      required: [true, `Weither the waste was collected or not`],
+      required: [true, `Le statut de collecte est requis`],
     },
   },
   {
@@ -28,6 +28,6 @@ const wasteSchema = new mongoose.Schema(
   }
 );
 
-const Waste = mongoose.model("wastes", wasteSchema);
+const Waste = mongoose.model('wastes', wasteSchema);
 
 module.exports = Waste;

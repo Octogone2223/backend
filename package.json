@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "ts-node ./src/server.ts",
+    "start": "node dist/server.js",
     "start:dev": "nodemon",
-    "start:prod": "npm run build && node ./dist/src/server.js",
+    "start:prod": "npm run build && node ./dist/server.js",
     "build": "npx tsc",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master",
-    "postinstall": "tsc"
+    "deploy": "git add . && git commit -m Heroku && git push heroku main",
+    "postinstall": "npx tsc"
   },
   "repository": {
     "type": "git",

@@ -3,9 +3,18 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import rateLimit from "express-rate-limit";
 
 const morgan = require("morgan");
 const cors = require("cors");
+
+// Rate limiter
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -50,6 +59,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors(corsOptions));
+app.use(limiter);
 app.use(
   "/api-docs",
   swaggerUi.serve,

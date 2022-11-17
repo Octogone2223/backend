@@ -1,18 +1,22 @@
-import { Express } from 'express';
-import { verifyToken } from '../middlewares/auth.middleware';
+import { Express } from "express";
+import { verifyToken } from "../middlewares/auth.middleware";
 const {
   getAll,
   getOne,
   createOne,
   updateIsCollected,
   deleteWaste,
-} = require('../controllers/waste.controller');
+} = require("../controllers/waste.controller");
 
-const BASE_URL = '/wastes';
+const BASE_URL = "/wastes";
 
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
  *   schemas:
  *     Waste:
  *       type: object
@@ -61,6 +65,8 @@ module.exports = (app: Express) => {
    * path:
    * /wastes:
    *   get:
+   *    security:
+   *      - bearerAuth: []
    *    summary: List all wastes
    *    tags: [Waste]
    *    responses:
@@ -77,6 +83,8 @@ module.exports = (app: Express) => {
    * path:
    * /wastes/{id}:
    *   get:
+   *    security:
+   *      - bearerAuth: []
    *    summary: Return a single waste record
    *    tags: [Waste]
    *    responses:
@@ -93,6 +101,8 @@ module.exports = (app: Express) => {
    * path:
    * /wastes:
    *   post:
+   *    security:
+   *      - bearerAuth: []
    *    summary: Creates a new waste record
    *    tags: [Waste]
    *    requestBody:
@@ -115,6 +125,8 @@ module.exports = (app: Express) => {
    * put:
    * /wastes/{id}:
    *   put:
+   *    security:
+   *      - bearerAuth: []
    *    summary: Updates an existing waste record
    *    tags: [Waste]
    *    requestBody:
@@ -137,6 +149,8 @@ module.exports = (app: Express) => {
    * path:
    * /wastes/{id}:
    *   delete:
+   *    security:
+   *      - bearerAuth: []
    *    summary: Delete an existing waste record
    *    tags: [Waste]
    *    responses:

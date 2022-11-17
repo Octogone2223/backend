@@ -1,26 +1,37 @@
-import { NextFunction, Response } from 'express';
-const jwt = require('jsonwebtoken');
-const config = require('../config/auth.config.js');
+import { NextFunction, Response } from "express";
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
 
 export const verifyToken = (req: any, res: Response, next: NextFunction) => {
-  const token = req.headers['client_token'];
+  const bearerHeader = req.headers["authorization"];
 
-  if (!token) {
+  if (!bearerHeader) {
     return res.status(403).send({
-      message: 'No token provided!',
+      message: "No token provided",
     });
-  }
+  } else {
+    const bearer = bearerHeader.split(" ");
+    const token = bearer[1];
 
-  jwt.verify(token, config.secret, (err: Error, decoded: any) => {
-    if (err) {
-      return res.status(401).send({
-        message: 'Unauthorized!',
+    console.log("[token]: ", token);
+
+    if (!token) {
+      return res.status(403).send({
+        message: "No token provided",
       });
     }
 
-    req.userId = decoded.id;
-    next();
-  });
+    jwt.verify(token, config.secret, (err: Error, decoded: any) => {
+      if (err) {
+        return res.status(401).send({
+          message: "Unauthorized!",
+        });
+      }
+
+      req.userId = decoded.id;
+      next();
+    });
+  }
 };
 
 const authJwt = {

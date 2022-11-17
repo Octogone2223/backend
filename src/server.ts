@@ -20,6 +20,7 @@ const limiter = rateLimit({
 const PORT = process.env.PORT || 8080;
 const corsOptions = {
   origin: [
+    "http://localhost:4200",
     process.env.NODE_ENV === "production"
       ? process.env.ALLOW_ORIGIN_PROD
       : "http://localhost:4200",

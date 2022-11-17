@@ -16,6 +16,7 @@ Utilisation d’une base de données Mongo Atlas —> cloud
 - morgan : Middleware de log
 - swagger-jsdoc : Utilisation des commentaires pour l’import de données Swagger
 - swagger-ui-express : Interface swagger
+- express-rate-limit : Protège contre les attaques de bots malveillants en limitant le nombre de requêtes provenant d’une même adresse IP
 
 ## Model
 
@@ -34,6 +35,14 @@ Utilisation d’une base de données Mongo Atlas —> cloud
     *is_collected : le déchet alimentaire est-il récupérable --> limiter le gaspillage alimentaire.*
     
     + timestamp : createdAt et updateAt (utilisés à titre de logs notamment).
+    
+- User
+    
+    *_id : id technique en base de données de l'élément*
+    
+    *username : Identifiant unique de l’utilisateur
+    
+    *password: Mot de passe de l’utilisateur
     
 ## Endpoints 
   

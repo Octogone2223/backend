@@ -1,4 +1,5 @@
 import { Express } from 'express';
+import { verifyToken } from '../middlewares/auth.middleware';
 const {
   getAll,
   getOne,
@@ -55,96 +56,96 @@ const BASE_URL = '/wastes';
  *  description: API to manage wastes.
  */
 module.exports = (app: Express) => {
-/**
- * @swagger
- * path:
- * /wastes:
- *   get:
- *    summary: List all wastes
- *    tags: [Waste]
- *    responses:
- *      "200":
- *        description: Returns a list of wastes.
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Waste'
- */
-  app.get(`${BASE_URL}`, getAll);
   /**
- * @swagger
- * path:
- * /wastes/{id}:
- *   get:
- *    summary: Return a single waste record
- *    tags: [Waste]
- *    responses:
- *      "200":
- *        description: Returns a single waste record.
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Waste'
- */
-  app.get(`${BASE_URL}/:id`, getOne);
- /**
- * @swagger
- * path:
- * /wastes:
- *   post:
- *    summary: Creates a new waste record
- *    tags: [Waste]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/Waste'
- *    responses:
- *      "201":
- *        description: Returns the created waste record.
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Waste'
- */
-  app.post(`${BASE_URL}`, createOne);
+   * @swagger
+   * path:
+   * /wastes:
+   *   get:
+   *    summary: List all wastes
+   *    tags: [Waste]
+   *    responses:
+   *      "200":
+   *        description: Returns a list of wastes.
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/Waste'
+   */
+  app.get(`${BASE_URL}`, verifyToken, getAll);
   /**
- * @swagger
- * put:
- * /wastes/{id}:
- *   put:
- *    summary: Updates an existing waste record
- *    tags: [Waste]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/Waste'
- *    responses:
- *      "200":
- *        description: Returns the updated waste.
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Waste'
- */
-  app.put(`${BASE_URL}/:id`, updateIsCollected);
- /**
- * @swagger
- * path:
- * /wastes/{id}:
- *   delete:
- *    summary: Delete an existing waste record
- *    tags: [Waste]
- *    responses:
- *      "200":
- *        description: Returns the updated waste record.
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Waste'
- */
-  app.delete(`${BASE_URL}/:id`, deleteWaste);
+   * @swagger
+   * path:
+   * /wastes/{id}:
+   *   get:
+   *    summary: Return a single waste record
+   *    tags: [Waste]
+   *    responses:
+   *      "200":
+   *        description: Returns a single waste record.
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/Waste'
+   */
+  app.get(`${BASE_URL}/:id`, verifyToken, getOne);
+  /**
+   * @swagger
+   * path:
+   * /wastes:
+   *   post:
+   *    summary: Creates a new waste record
+   *    tags: [Waste]
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            $ref: '#/components/schemas/Waste'
+   *    responses:
+   *      "201":
+   *        description: Returns the created waste record.
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/Waste'
+   */
+  app.post(`${BASE_URL}`, verifyToken, createOne);
+  /**
+   * @swagger
+   * put:
+   * /wastes/{id}:
+   *   put:
+   *    summary: Updates an existing waste record
+   *    tags: [Waste]
+   *    requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *          schema:
+   *            $ref: '#/components/schemas/Waste'
+   *    responses:
+   *      "200":
+   *        description: Returns the updated waste.
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/Waste'
+   */
+  app.put(`${BASE_URL}/:id`, verifyToken, updateIsCollected);
+  /**
+   * @swagger
+   * path:
+   * /wastes/{id}:
+   *   delete:
+   *    summary: Delete an existing waste record
+   *    tags: [Waste]
+   *    responses:
+   *      "200":
+   *        description: Returns the updated waste record.
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/Waste'
+   */
+  app.delete(`${BASE_URL}/:id`, verifyToken, deleteWaste);
 };

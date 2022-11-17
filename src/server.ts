@@ -22,7 +22,7 @@ const corsOptions = {
   origin: [
     process.env.NODE_ENV === "production"
       ? process.env.ALLOW_ORIGIN_PROD
-      : "http://127.0.0.1:3000",
+      : "http://localhost:4200",
   ],
   credentials: true,
 };

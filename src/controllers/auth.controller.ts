@@ -5,16 +5,21 @@ import bcrypt from "bcrypt";
 const config = require("../config/auth.config");
 
 exports.register = async (req: Request, res: Response) => {
-  req.body.password = bcrypt.hashSync(req.body.password, 10);
-  const newUser = new User(req.body);
-  newUser.save((err: any, data: any) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Failed to create a new user",
-      });
-    }
-    res.status(201).json(data);
-  });
+  try {
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    const newUser = new User(req.body);
+    newUser.save((err: any, data: any) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Failed to create a new user",
+        });
+      }
+      res.status(201).json(data);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Failed to register the new user");
+  }
 };
 
 exports.login = async (req: Request, res: Response) => {
